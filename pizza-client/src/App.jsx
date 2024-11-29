@@ -42,10 +42,10 @@ function App() {
 
   if (successMessage) {
     return (
-      <>
+      <div id="menu-wrapper">
         <h3>{successMessage}</h3>
         <h4 onClick={() => setSuccessMessage("")}>Place new Order</h4>
-      </>
+      </div>
     )
   }
 
