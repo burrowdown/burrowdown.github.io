@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import "./App.css"
-import { pizzaPrices } from "../../test-server/utils/pizza"
+import { pizzaPrices } from "../../pizza-server/utils/pizza"
 
 function App() {
   const [allToppings, setAllToppings] = useState({})
@@ -50,7 +50,7 @@ function App() {
   }
 
   return (
-    <>
+    <div id="menu-wrapper">
       <h3>Size</h3>
       {Object.keys(pizzaPrices.basePrices).map((size) => (
         <div key={size}>
@@ -92,7 +92,7 @@ function App() {
         onClick={placeOrder}
         disabled={!size}
       />
-    </>
+    </div>
   )
 }
 
