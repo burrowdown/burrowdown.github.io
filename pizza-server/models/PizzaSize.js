@@ -13,4 +13,4 @@ const PizzaSize = new mongoose.Schema({
   },
 })
 
-export default mongoose.model("topping", PizzaSize)
+export default mongoose.model("size", PizzaSize)

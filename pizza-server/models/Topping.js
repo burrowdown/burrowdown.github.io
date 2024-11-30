@@ -4,9 +4,23 @@ const Topping = new mongoose.Schema({
   name: {
     type: String,
     required: true,
+    maxLength: 100,
   },
-  vegetarian: Boolean,
-  inStock: Boolean,
+  displayName: {
+    type: String,
+    required: true,
+    maxLength: 200,
+  },
+  vegetarian: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  inStock: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
   price: {
     type: Number,
     required: true,
