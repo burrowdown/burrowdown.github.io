@@ -79,10 +79,10 @@ function App() {
         <div key={t._id}>
           <input
             type="checkbox"
-            id={t._id}
+            id={t.name}
             onChange={() => handleToppingChange(t)}
           />
-          <label htmlFor={t._id}>{t.name}</label>
+          <label htmlFor={t.name}>{t.displayName}</label>
           <span className="item-price">${t.price}</span>
         </div>
       ))}

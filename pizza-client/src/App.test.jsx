@@ -13,13 +13,23 @@ describe("Pizza Order App", () => {
 
     // Mock the toppings fetch response
     const allToppings = [
-      { name: "Olives", price: 1, vegetarian: true },
-      { name: "pineapple", price: 2, vegetarian: true },
-      { name: "tripe", price: 3 },
+      { name: "olives", displayName: "Olives", price: 1, vegetarian: true },
+      {
+        name: "pineapple",
+        displayName: "pineapple",
+        price: 2,
+        vegetarian: true,
+      },
+      { name: "tripe", displayName: "tripe", price: 3 },
     ]
     const vegToppings = [
-      { name: "Olives", price: 1, vegetarian: true },
-      { name: "pineapple", price: 2, vegetarian: true },
+      { name: "olives", displayName: "Olives", price: 1, vegetarian: true },
+      {
+        name: "pineapple",
+        displayName: "pineapple",
+        price: 2,
+        vegetarian: true,
+      },
     ]
 
     // mock fetch results, depending on endpoint url
