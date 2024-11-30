@@ -12,15 +12,15 @@ describe("Pizza Order App", () => {
     vi.clearAllMocks()
 
     // Mock the toppings fetch response
-    const allToppings = {
-      olives: { name: "Olives", price: 1, vegetarian: true },
-      pineapple: { name: "pineapple", price: 2, vegetarian: true },
-      tripe: { name: "tripe", price: 3 },
-    }
-    const vegToppings = {
-      olives: { name: "Olives", price: 1, vegetarian: true },
-      pineapple: { name: "pineapple", price: 2, vegetarian: true },
-    }
+    const allToppings = [
+      { name: "Olives", price: 1, vegetarian: true },
+      { name: "pineapple", price: 2, vegetarian: true },
+      { name: "tripe", price: 3 },
+    ]
+    const vegToppings = [
+      { name: "Olives", price: 1, vegetarian: true },
+      { name: "pineapple", price: 2, vegetarian: true },
+    ]
 
     // mock fetch results, depending on endpoint url
     global.fetch.mockImplementation((url) => {
