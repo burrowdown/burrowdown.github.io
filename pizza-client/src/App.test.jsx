@@ -1,10 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest"
 import { act, fireEvent, render, screen, waitFor } from "@testing-library/react"
 import App from "./App"
-import { pizzaPrices } from "../../test-server/utils/pizza"
-
-// Remember before you begin testing, you must add the test configuration settings
-// to vite.config.js
+import { pizzaPrices } from "../../pizza-server/utils/pizza"
 
 // Mock fetch globally (replace fetch with an empty function)
 global.fetch = vi.fn()
@@ -15,15 +12,25 @@ describe("Pizza Order App", () => {
     vi.clearAllMocks()
 
     // Mock the toppings fetch response
-    const allToppings = {
-      olives: { name: "Olives", price: 1, vegetarian: true },
-      pineapple: { name: "pineapple", price: 2, vegetarian: true },
-      tripe: { name: "tripe", price: 3 },
-    }
-    const vegToppings = {
-      olives: { name: "Olives", price: 1, vegetarian: true },
-      pineapple: { name: "pineapple", price: 2, vegetarian: true },
-    }
+    const allToppings = [
+      { name: "olives", displayName: "Olives", price: 1, vegetarian: true },
+      {
+        name: "pineapple",
+        displayName: "pineapple",
+        price: 2,
+        vegetarian: true,
+      },
+      { name: "tripe", displayName: "tripe", price: 3 },
+    ]
+    const vegToppings = [
+      { name: "olives", displayName: "Olives", price: 1, vegetarian: true },
+      {
+        name: "pineapple",
+        displayName: "pineapple",
+        price: 2,
+        vegetarian: true,
+      },
+    ]
 
     // mock fetch results, depending on endpoint url
     global.fetch.mockImplementation((url) => {
@@ -44,8 +51,6 @@ describe("Pizza Order App", () => {
       }
     })
 
-    // render the app into the virtual DOM
-    // all actions that change state must be wrapped in act()
     await act(() => render(<App />))
   })
 
@@ -75,7 +80,6 @@ describe("Pizza Order App", () => {
       const smallInput = screen.getByLabelText("small")
       expect(smallInput.checked).toBe(false)
 
-      // firing an event executes that action in the rendered virtual DOM
       fireEvent.click(smallInput)
       expect(smallInput.checked).toBe(true)
       // check that multiple clicks don't deselect the option
@@ -126,11 +130,7 @@ describe("Pizza Order App", () => {
       const vegToggle = screen.getByText("Show Vegetarian")
       fireEvent.click(vegToggle)
 
-      // any time we call a fetch, we need to waitFor() the results
       await waitFor(() => {
-        // we use queryBy instead of getBy when checking for something to NOT exist
-        // because getBy will return an error if the item is not found
-        // queryBy will return undefined
         const tripeInput = screen.queryByLabelText("tripe")
         expect(tripeInput).toBeFalsy()
       })

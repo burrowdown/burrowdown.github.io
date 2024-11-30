@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import "./App.css"
-import { pizzaPrices } from "../../test-server/utils/pizza"
+import { pizzaPrices } from "../../pizza-server/utils/pizza"
 
 function App() {
-  const [allToppings, setAllToppings] = useState({})
+  const [allToppings, setAllToppings] = useState([])
   const [showVeg, setShowVeg] = useState(false)
   const [toppings, setToppings] = useState([])
   const [size, setSize] = useState("")
@@ -33,6 +33,7 @@ function App() {
       .catch((err) => console.warn(err))
   }
 
+  // fetch toppings
   useEffect(() => {
     fetch(`http://localhost:4000/toppings/?vegetarian=${showVeg}`)
       .then((res) => res.json())
@@ -42,15 +43,15 @@ function App() {
 
   if (successMessage) {
     return (
-      <>
+      <div id="menu-wrapper">
         <h3>{successMessage}</h3>
         <h4 onClick={() => setSuccessMessage("")}>Place new Order</h4>
-      </>
+      </div>
     )
   }
 
   return (
-    <>
+    <div id="menu-wrapper">
       <h3>Size</h3>
       {Object.keys(pizzaPrices.basePrices).map((size) => (
         <div key={size}>
@@ -74,15 +75,15 @@ function App() {
           Show Vegetarian
         </span>
       </div>
-      {Object.keys(allToppings).map((t) => (
-        <div key={t}>
+      {allToppings.map((t) => (
+        <div key={t._id}>
           <input
             type="checkbox"
-            id={t}
+            id={t.name}
             onChange={() => handleToppingChange(t)}
           />
-          <label htmlFor={t}>{allToppings[t].name}</label>
-          <span className="item-price">${allToppings[t].price}</span>
+          <label htmlFor={t.name}>{t.displayName}</label>
+          <span className="item-price">${t.price}</span>
         </div>
       ))}
       <input
@@ -92,7 +93,7 @@ function App() {
         onClick={placeOrder}
         disabled={!size}
       />
-    </>
+    </div>
   )
 }
 
