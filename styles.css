@@ -1,16 +1,16 @@
 :root {
   --text-color: #422883;
   /* "soft peachy delight" from coolors.co */
-  --powder-blush: #fec5bbff;
-  --almond-silk: #fcd5ceff;
-  --soft-blush: #fae1ddff;
-  --seashell: #f8edebff;
-  --alabaster-grey: #e8e8e4ff;
-  --alabaster-grey-2: #d8e2dcff;
-  --linen: #ece4dbff;
-  --powder-petal: #ffe5d9ff;
-  --peach-fuzz: #ffd7baff;
-  --peach-glow: #fec89aff;
+  --powder-blush: #fec5bb;
+  --almond-silk: #fcd5ce;
+  --soft-blush: #fae1dd;
+  --seashell: #f8edeb;
+  --alabaster-grey: #e8e8e4;
+  --alabaster-grey-2: #d8e2dc;
+  --linen: #ece4db;
+  --powder-petal: #ffe5d9;
+  --peach-fuzz: #ffd7ba;
+  --peach-glow: #fec89a;
 }
 
 /* From Uiverse.io by ariba_9087 */
