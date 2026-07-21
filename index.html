@@ -74,21 +74,21 @@
                 </a>
               </li>
             </ul>
-            <button class="flip-back" type="button" aria-label="Flip to front">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M9 7 4 12l5 5v-4h6a4 4 0 0 0 4-4V7h-2v2a2 2 0 0 1-2 2H9V7Z"
-                />
-              </svg>
-            </button>
+            <button
+              class="flip-trigger flip-to-front"
+              type="button"
+              aria-label="Show front of card"
+            ></button>
           </div>
         </div>
       </div>
     </div>
     <script>
       const card = document.querySelector(".flip-card")
-      const flipTrigger = card.querySelector(".flip-trigger")
-      const flipBack = card.querySelector(".flip-back")
+      const flipTrigger = card.querySelector(
+        ".flip-card-front .flip-trigger",
+      )
+      const flipToFront = card.querySelector(".flip-to-front")
       const firstContactLink = card.querySelector(".contact-links a")
 
       flipTrigger.addEventListener("click", () => {
@@ -97,7 +97,7 @@
         firstContactLink.focus()
       })
 
-      flipBack.addEventListener("click", () => {
+      flipToFront.addEventListener("click", () => {
         card.classList.remove("is-flipped")
         flipTrigger.setAttribute("aria-expanded", "false")
         flipTrigger.focus()
