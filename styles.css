@@ -1,5 +1,5 @@
 :root {
-  --text-color: #251351;
+  --text-color: rgb(66, 40, 131);
   /* "soft peachy delight" from coolors.co */
   --powder-blush: #fec5bbff;
   --almond-silk: #fcd5ceff;
@@ -106,23 +106,62 @@ body {
   width: 190px;
   height: 254px;
   perspective: 1000px;
-  font-family: sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   position: relative;
   z-index: 1;
 }
 
 .title {
   font-size: 1.5em;
-  font-weight: 900;
-  text-align: center;
+  font-weight: 700;
+  text-align: left;
   margin: 0;
+}
+
+.roles,
+.contact-links {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+}
+
+.roles {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 1.05rem;
+}
+
+.contact-links {
+  display: grid;
+  gap: 0.85rem;
+  text-align: left;
+}
+
+.contact-links a {
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.65rem;
+  text-decoration: none;
+}
+
+.contact-links a:hover {
+  text-decoration: underline;
+}
+
+.contact-links svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: currentColor;
+  flex: 0 0 auto;
 }
 
 .flip-card-inner {
   position: relative;
   width: 100%;
   height: 100%;
-  text-align: center;
+  text-align: left;
   transition: transform 0.8s;
   transform-style: preserve-3d;
 }
@@ -137,13 +176,15 @@ body {
   position: absolute;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: flex-start;
+  box-sizing: border-box;
+  padding: 1.5rem;
   width: 100%;
   height: 100%;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   border: 1px solid black;
-  border-radius: 1rem;
+  border-radius: 0.65rem;
 }
 
 .flip-card-front {
@@ -157,7 +198,7 @@ body {
 
 .flip-card-back {
   background: linear-gradient(
-    120deg,
+    240deg,
     var(--seashell) 88%,
     var(--powder-blush) 48%
   );
