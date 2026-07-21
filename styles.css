@@ -1,3 +1,105 @@
+:root {
+  --text-color: #251351;
+  /* "soft peachy delight" from coolors.co */
+  --powder-blush: #fec5bbff;
+  --almond-silk: #fcd5ceff;
+  --soft-blush: #fae1ddff;
+  --seashell: #f8edebff;
+  --alabaster-grey: #e8e8e4ff;
+  --alabaster-grey-2: #d8e2dcff;
+  --linen: #ece4dbff;
+  --powder-petal: #ffe5d9ff;
+  --peach-fuzz: #ffd7baff;
+  --peach-glow: #fec89aff;
+}
+
+/* From Uiverse.io by ariba_9087 */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background: linear-gradient(
+    135deg,
+    var(--powder-blush),
+    var(--almond-silk)
+  ); /* Soft pastel gradient background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.container {
+  display: grid;
+  min-height: 100vh;
+  margin: 0;
+  place-items: center;
+  position: relative;
+  width: 100%; /* Fill the entire screen */
+  height: 100%;
+  overflow: hidden;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.2),
+    rgba(0, 0, 0, 0.1)
+  );
+}
+
+.container::before,
+.container::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    var(--powder-blush),
+    var(--almond-silk),
+    var(--seashell),
+    var(--alabaster-grey),
+    var(--peach-fuzz),
+    var(--soft-blush),
+    var(--linen),
+    var(--powder-petal),
+    var(--peach-glow),
+    var(--alabaster-grey-2),
+    var(--powder-blush)
+  );
+  transform: translate(-50%, -50%);
+  animation: rotate 20s linear infinite;
+  filter: blur(50px); /* Create a soft glowing effect */
+  opacity: 0.8;
+}
+
+/* Secondary rotating layer for depth */
+.container::after {
+  width: 180%;
+  height: 180%;
+  animation: rotate-reverse 15s linear infinite;
+  opacity: 0.6;
+}
+
+/* Rotating animations */
+@keyframes rotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes rotate-reverse {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}
+
 /* From Uiverse.io by joe-watson-sbf */
 .flip-card {
   background-color: transparent;
@@ -5,6 +107,8 @@
   height: 254px;
   perspective: 1000px;
   font-family: sans-serif;
+  position: relative;
+  z-index: 1;
 }
 
 .title {
@@ -38,29 +142,25 @@
   height: 100%;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  border: 1px solid coral;
+  border: 1px solid black;
   border-radius: 1rem;
 }
 
 .flip-card-front {
   background: linear-gradient(
     120deg,
-    bisque 60%,
-    rgb(255, 231, 222) 88%,
-    rgb(255, 211, 195) 40%,
-    rgba(255, 127, 80, 0.603) 48%
+    var(--seashell) 88%,
+    var(--peach-glow) 48%
   );
-  color: coral;
+  color: var(--text-color);
 }
 
 .flip-card-back {
   background: linear-gradient(
     120deg,
-    rgb(255, 174, 145) 30%,
-    coral 88%,
-    bisque 40%,
-    rgb(255, 185, 160) 78%
+    var(--seashell) 88%,
+    var(--powder-blush) 48%
   );
-  color: white;
+  color: var(--text-color);
   transform: rotateY(180deg);
 }
