@@ -26,6 +26,12 @@
               <li>coach</li>
               <li>coordinator</li>
             </ul>
+            <button
+              class="flip-trigger"
+              type="button"
+              aria-label="Show contact links"
+              aria-expanded="false"
+            ></button>
           </div>
           <div class="flip-card-back">
             <h2 class="title">Danny<br />Burrow</h2>
@@ -67,9 +73,29 @@
                 </a>
               </li>
             </ul>
+            <button class="flip-back" type="button" aria-label="Flip to front">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 7 4 12l5 5v-4h6a4 4 0 0 0 4-4V7h-2v2a2 2 0 0 1-2 2H9V7Z" />
+              </svg>
+            </button>
           </div>
         </div>
       </div>
     </div>
+    <script>
+      const card = document.querySelector(".flip-card");
+      const flipTrigger = card.querySelector(".flip-trigger");
+      const flipBack = card.querySelector(".flip-back");
+
+      flipTrigger.addEventListener("click", () => {
+        card.classList.add("is-flipped");
+        flipTrigger.setAttribute("aria-expanded", "true");
+      });
+
+      flipBack.addEventListener("click", () => {
+        card.classList.remove("is-flipped");
+        flipTrigger.setAttribute("aria-expanded", "false");
+      });
+    </script>
   </body>
 </html>
