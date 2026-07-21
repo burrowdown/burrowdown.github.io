@@ -1,22 +1,298 @@
+:root {
+  --text-color: #422883;
+  /* "soft peachy delight" from coolors.co */
+  --powder-blush: #fec5bb;
+  --almond-silk: #fcd5ce;
+  --soft-blush: #fae1dd;
+  --seashell: #f8edeb;
+  --alabaster-grey: #e8e8e4;
+  --alabaster-grey-2: #d8e2dc;
+  --linen: #ece4db;
+  --powder-petal: #ffe5d9;
+  --peach-fuzz: #ffd7ba;
+  --peach-glow: #fec89a;
+}
+
+/* From Uiverse.io by ariba_9087 */
 body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background: linear-gradient(
+    135deg,
+    var(--powder-blush),
+    var(--almond-silk)
+  ); /* Soft pastel gradient background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.container {
+  display: grid;
+  min-height: 100vh;
+  margin: 0;
+  place-items: center;
+  position: relative;
+  width: 100%; /* Fill the entire screen */
+  height: 100%;
+  overflow: hidden;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.2),
+    rgba(0, 0, 0, 0.1)
+  );
+}
+
+.container::before,
+.container::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    var(--powder-blush),
+    var(--almond-silk),
+    var(--seashell),
+    var(--alabaster-grey),
+    var(--peach-fuzz),
+    var(--soft-blush),
+    var(--linen),
+    var(--powder-petal),
+    var(--peach-glow),
+    var(--alabaster-grey-2),
+    var(--powder-blush)
+  );
+  transform: translate(-50%, -50%);
+  animation: rotate 15s linear infinite;
+  filter: blur(50px); /* Create a soft glowing effect */
+  opacity: 0.8;
+}
+
+/* Secondary rotating layer for depth */
+.container::after {
+  width: 180%;
+  height: 180%;
+  animation: rotate-reverse 10s linear infinite;
+  opacity: 0.6;
+}
+
+/* Rotating animations */
+@keyframes rotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes rotate-reverse {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}
+
+/* From Uiverse.io by joe-watson-sbf */
+.flip-card {
+  background-color: transparent;
+  width: 190px;
+  height: 254px;
+  perspective: 1000px;
+  font-family: "Space Grotesk", sans-serif;
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  font-size: 1.5em;
+  font-weight: 700;
+  text-align: left;
+  margin: 0;
+}
+
+.roles,
+.contact-links {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+}
+
+.roles {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 1.05rem;
+}
+
+.contact-links {
+  display: grid;
+  gap: 0.85rem;
+  text-align: left;
+}
+
+.contact-links a {
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.65rem;
+  text-decoration: none;
+}
+
+.contact-links a:hover {
+  text-decoration: underline;
+}
+
+.contact-links svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: currentColor;
+  flex: 0 0 auto;
+}
+
+.flip-trigger,
+.flip-back {
+  display: none;
+}
+
+.flip-trigger {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  cursor: pointer;
+}
+
+.flip-back {
+  position: absolute;
+  right: 0.75rem;
+  top: 0.75rem;
+  align-items: center;
+  padding: 0.25rem;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.flip-back svg {
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+}
+
+.flip-trigger:focus-visible,
+.flip-back:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card.is-flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Only the visible face should receive clicks/taps. Without this the
+   rotated-away face keeps intercepting pointer events despite being hidden. */
+.flip-card-back {
+  pointer-events: none;
+}
+
+.flip-card.is-flipped .flip-card-front {
+  pointer-events: none;
+}
+
+.flip-card.is-flipped .flip-card-back {
+  pointer-events: auto;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .flip-card:hover .flip-card-front {
+    pointer-events: none;
+  }
+
+  .flip-card:hover .flip-card-back {
+    pointer-events: auto;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .flip-trigger {
+    display: block;
+  }
+
+  .flip-back {
+    display: flex;
+  }
+}
+
+.flip-card-front,
+.flip-card-back {
+  box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.2);
+  position: absolute;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  font-family: Arial, Helvetica, sans-serif;
+  align-items: flex-start;
+  box-sizing: border-box;
+  padding: 1.5rem;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border: 1px solid black;
+  border-radius: 0.65rem;
 }
 
-#smalltext {
-  font-size: 0.6em;
+.flip-card-front {
+  background: linear-gradient(
+    120deg,
+    var(--seashell) 88%,
+    var(--peach-glow) 48%
+  );
+  color: var(--text-color);
 }
 
-img {
-  width: 90vw;
-  border: 3px solid #000;
+.flip-card-back {
+  background: linear-gradient(
+    240deg,
+    var(--seashell) 88%,
+    var(--powder-blush) 48%
+  );
+  color: var(--text-color);
+  transform: rotateY(180deg);
 }
 
-@media screen and (min-width: 600px) {
-  img {
-    width: 60vw;
-    max-width: 600px;
+@media (prefers-reduced-motion: reduce) {
+  .container::before,
+  .container::after {
+    animation: none;
+  }
+
+  .flip-card-inner {
+    transition: none;
   }
 }

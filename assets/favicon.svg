@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <rect width="100" height="100" rx="22.5" ry="22.5" fill="#f5f5f7"></rect>
+  <text x="50" y="46" text-anchor="middle" dominant-baseline="central" font-family="-apple-system, &#39;SF Pro Display&#39;, &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif" font-weight="700" font-size="50" letter-spacing="-2.5" fill="#1d1d1f">DB</text>
+  <rect x="19" y="69" width="62" height="7" rx="3.5" fill="#5a3aac"></rect>
+</svg>
