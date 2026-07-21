@@ -285,3 +285,14 @@ body {
   color: var(--text-color);
   transform: rotateY(180deg);
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .container::before,
+  .container::after {
+    animation: none;
+  }
+
+  .flip-card-inner {
+    transition: none;
+  }
+}

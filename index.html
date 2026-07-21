@@ -35,7 +35,7 @@
             ></button>
           </div>
           <div class="flip-card-back">
-            <h2 class="title">Danny<br />Burrow</h2>
+            <h2 class="title" aria-hidden="true">Danny<br />Burrow</h2>
             <ul class="contact-links">
               <li>
                 <a
@@ -89,15 +89,18 @@
       const card = document.querySelector(".flip-card")
       const flipTrigger = card.querySelector(".flip-trigger")
       const flipBack = card.querySelector(".flip-back")
+      const firstContactLink = card.querySelector(".contact-links a")
 
       flipTrigger.addEventListener("click", () => {
         card.classList.add("is-flipped")
         flipTrigger.setAttribute("aria-expanded", "true")
+        firstContactLink.focus()
       })
 
       flipBack.addEventListener("click", () => {
         card.classList.remove("is-flipped")
         flipTrigger.setAttribute("aria-expanded", "false")
+        flipTrigger.focus()
       })
     </script>
   </body>
