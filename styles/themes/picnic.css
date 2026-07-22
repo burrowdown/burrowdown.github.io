@@ -1,0 +1,96 @@
+[data-theme="picnic"] {
+  --gingham-red: rgba(198, 40, 40, 0.55);
+  --blanket-white: #fdf6f0;
+
+  --font-family: "Space Grotesk", sans-serif;
+  --text-color: #5a3517;
+  --page-bg: #fdf6f0;
+  --container-bg: transparent;
+  --card-border: transparent;
+  --card-shadow: 0 12px 22px rgba(74, 40, 12, 0.35);
+
+  --weave-size: 26px;
+  --weave-rotate: 15deg;
+  --wicker-1: #d8a481; /* diagonal reeds */
+  --wicker-2: #efcb9c; /* crossing reeds */
+  --wicker-base: #ddb79c; /* gaps between reeds */
+  --wicker:
+    linear-gradient(
+        45deg,
+        var(--wicker-1) 12%,
+        transparent 0,
+        transparent 88%,
+        var(--wicker-1) 0
+      )
+      0 0 / var(--weave-size) var(--weave-size),
+    linear-gradient(
+        135deg,
+        transparent 37%,
+        var(--wicker-2) 0,
+        var(--wicker-2) 63%,
+        transparent 0
+      )
+      0 0 / var(--weave-size) var(--weave-size),
+    linear-gradient(
+        45deg,
+        transparent 37%,
+        var(--wicker-1) 0,
+        var(--wicker-1) 63%,
+        transparent 0
+      )
+      0 0 / var(--weave-size) var(--weave-size);
+
+  --card-front-bg: var(--wicker-base);
+  --card-back-bg: var(--wicker-base);
+  --theme-cycle-bg: var(--wicker-base);
+  --theme-cycle-color: #5a3517;
+}
+
+[data-theme="picnic"] .title {
+  font-family: "Gochi Hand", cursive;
+  font-size: 1.9rem;
+  letter-spacing: 0.12em;
+}
+
+[data-theme="picnic"] .roles,
+[data-theme="picnic"] .contact-links {
+  font-weight: 700;
+}
+
+/* Paint the seamless 45deg weave on a clipped, rotated pseudo-element */
+[data-theme="picnic"] .flip-card-front,
+[data-theme="picnic"] .flip-card-back {
+  overflow: hidden;
+  isolation: isolate;
+}
+
+[data-theme="picnic"] .flip-card-front::before,
+[data-theme="picnic"] .flip-card-back::before {
+  content: "";
+  position: absolute;
+  inset: -35%;
+  z-index: -1;
+  background: var(--wicker), var(--wicker-base);
+  transform: rotate(var(--weave-rotate));
+}
+
+/* The gingham blanket. */
+[data-theme="picnic"] .container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 20px,
+      var(--gingham-red) 20px 40px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 20px,
+      var(--gingham-red) 20px 40px
+    ),
+    var(--blanket-white);
+}

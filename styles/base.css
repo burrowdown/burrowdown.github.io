@@ -25,6 +25,7 @@ body {
   color: var(--theme-cycle-color, var(--text-color));
   box-shadow: var(--card-shadow, 0 8px 14px 0 rgba(0, 0, 0, 0.2));
   cursor: pointer;
+  opacity: 0.7;
 }
 
 .theme-cycle svg {
@@ -194,7 +195,6 @@ body {
   .theme-cycle {
     top: 1.25rem;
     bottom: auto;
-    opacity: 0.7;
   }
 }
 

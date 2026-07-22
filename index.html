@@ -3,22 +3,29 @@
   <head>
     <meta charset="utf-8" />
     <script>
-      window.themes = ["blush", "groove", "cathedral", "scape", "waves"]
-      document.documentElement.dataset.theme =
-        window.themes[Math.floor(Math.random() * window.themes.length)]
+      window.themes = [
+        "blush",
+        "cathedral",
+        "groove",
+        "picnic",
+        "scape",
+        "waves",
+      ]
+      document.documentElement.dataset.theme = "scape"
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Caprasimo&amp;family=Fraunces:opsz,wght@9..144,400;9..144,700&amp;family=Goblin+One&amp;family=Michroma&amp;family=Original+Surfer&amp;family=Outfit:wght@400;500;700&amp;family=Plus+Jakarta+Sans:wght@400;500;700&amp;family=Space+Grotesk:wght@400;500;700&amp;family=Syne:wght@400;500;700&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Caprasimo&amp;family=Fraunces:opsz,wght@9..144,400;9..144,700&amp;family=Gochi+Hand&amp;family=Goblin+One&amp;family=Michroma&amp;family=Original+Surfer&amp;family=Outfit:wght@400;500;700&amp;family=Plus+Jakarta+Sans:wght@400;500;700&amp;family=Space+Grotesk:wght@400;500;700&amp;family=Syne:wght@400;500;700&amp;display=swap"
       rel="stylesheet"
     />
     <link rel="icon" href="/assets/favicon.ico" sizes="any" />
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles/base.css" />
     <link rel="stylesheet" href="styles/themes/blush.css" />
-    <link rel="stylesheet" href="styles/themes/groove.css" />
     <link rel="stylesheet" href="styles/themes/cathedral.css" />
+    <link rel="stylesheet" href="styles/themes/groove.css" />
+    <link rel="stylesheet" href="styles/themes/picnic.css" />
     <link rel="stylesheet" href="styles/themes/scape.css" />
     <link rel="stylesheet" href="styles/themes/waves.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -133,8 +140,7 @@
             )
         }
         // Defer the theme swap so its (heavy) repaint doesn't eat the
-        // first frames of the spin, which was dropping half the animation
-        // on mobile.
+        // first frames of the flip
         requestAnimationFrame(() => {
           const current = document.documentElement.dataset.theme
           const others = window.themes.filter((theme) => theme !== current)
