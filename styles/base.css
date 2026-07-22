@@ -106,6 +106,12 @@ body {
   flex: 0 0 auto;
 }
 
+.flip-trigger,
+.theme-cycle,
+.contact-links a {
+  -webkit-tap-highlight-color: transparent;
+}
+
 .flip-trigger {
   display: none;
   position: absolute;
@@ -183,6 +189,12 @@ body {
   .contact-links {
     position: relative;
     z-index: 2;
+  }
+
+  .theme-cycle {
+    top: 1.25rem;
+    bottom: auto;
+    opacity: 0.7;
   }
 }
 
