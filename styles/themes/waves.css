@@ -1,0 +1,70 @@
+/* Background from Uiverse.io */
+[data-theme="waves"] {
+  --c1: #d0f2f6;
+  --c2: #bde9eb;
+  --wave-shade: #ffffff88; /* the diagonal shadow band; recolor/soften here */
+  --font-family: "Space Grotesk", sans-serif;
+  --text-color: #306e71;
+  --page-bg: #306e71;
+  --container-bg: transparent;
+  --card-border: #306e71;
+  --card-shadow: 0 12px 28px rgba(53, 92, 125, 0.4);
+
+  /* Sand: a fractal-noise + diffuse-lighting SVG blended over the card color.
+     Tweak grain with baseFrequency, intensity with the rect opacity. */
+  --sand: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='190' height='254' preserveAspectRatio='none'><filter id='s'><feTurbulence type='fractalNoise' baseFrequency='0.080 0.200' numOctaves='4' seed='7' result='n'/><feDiffuseLighting in='n' lighting-color='%23fff' surfaceScale='1.1' diffuseConstant='1.05'><feDistantLight azimuth='235' elevation='55'/></feDiffuseLighting></filter><rect width='100%25' height='100%25' filter='url(%23s)' opacity='0.58'/></svg>");
+  --card-front-bg: var(--sand) center / cover no-repeat, #e8cba3;
+  --card-back-bg: var(--sand) center / cover no-repeat, #e8cba3;
+  --card-blend: overlay;
+  --theme-cycle-bg: var(--sand) center / cover no-repeat, #e8cba3;
+}
+
+[data-theme="waves"] .title {
+  font-family: "Original Surfer", sans-serif;
+}
+
+[data-theme="waves"] .container {
+  --s: 100px; /* control the size */
+
+  --_g:
+    var(--c2) 4% 14%, var(--c1) 14% 24%, var(--c2) 22% 34%, var(--c1) 34% 44%,
+    var(--c2) 44% 56%, var(--c1) 56% 66%, var(--c2) 66% 76%, var(--c1) 76% 86%,
+    var(--c2) 86% 96%;
+  background: var(--c1);
+}
+
+/* Oversized so the tilt/sway never exposes an edge */
+[data-theme="waves"] .container::before {
+  content: "";
+  position: absolute;
+  inset: -25%;
+  z-index: 0;
+  background:
+    radial-gradient(
+      100% 100% at 100% 0,
+      var(--c1) 4%,
+      var(--_g),
+      var(--wave-shade) 96%,
+      #0000
+    ),
+    radial-gradient(
+        100% 100% at 0 100%,
+        #0000,
+        var(--wave-shade) 4%,
+        var(--_g),
+        var(--c1) 96%
+      )
+      var(--c1);
+  background-size: var(--s) var(--s);
+  transform-origin: center;
+  animation: waves-rock 3s ease-in-out infinite alternate;
+}
+
+@keyframes waves-rock {
+  from {
+    transform: rotate(-0.2deg) translateX(-0.3%);
+  }
+  to {
+    transform: rotate(0.2deg) translateX(0.3%);
+  }
+}

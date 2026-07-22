@@ -214,6 +214,8 @@ body {
   border: 1px solid var(--card-border, black);
   border-radius: 0.65rem;
   color: var(--text-color);
+  /* Themes may layer a texture into --card-*-bg and blend it here. */
+  background-blend-mode: var(--card-blend, normal);
 }
 
 .flip-card-front {

@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8" />
     <script>
-      window.themes = ["blush", "groove", "cathedral", "scape"]
+      window.themes = ["blush", "groove", "cathedral", "scape", "waves"]
       document.documentElement.dataset.theme =
         window.themes[Math.floor(Math.random() * window.themes.length)]
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Caprasimo&amp;family=Fraunces:opsz,wght@9..144,400;9..144,700&amp;family=Goblin+One&amp;family=Michroma&amp;family=Outfit:wght@400;500;700&amp;family=Plus+Jakarta+Sans:wght@400;500;700&amp;family=Space+Grotesk:wght@400;500;700&amp;family=Syne:wght@400;500;700&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Caprasimo&amp;family=Fraunces:opsz,wght@9..144,400;9..144,700&amp;family=Goblin+One&amp;family=Michroma&amp;family=Original+Surfer&amp;family=Outfit:wght@400;500;700&amp;family=Plus+Jakarta+Sans:wght@400;500;700&amp;family=Space+Grotesk:wght@400;500;700&amp;family=Syne:wght@400;500;700&amp;display=swap"
       rel="stylesheet"
     />
     <link rel="icon" href="/assets/favicon.ico" sizes="any" />
@@ -20,16 +20,13 @@
     <link rel="stylesheet" href="styles/themes/groove.css" />
     <link rel="stylesheet" href="styles/themes/cathedral.css" />
     <link rel="stylesheet" href="styles/themes/scape.css" />
+    <link rel="stylesheet" href="styles/themes/waves.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Danny Burrow</title>
   </head>
 
   <body>
-    <button
-      class="theme-cycle"
-      type="button"
-      aria-label="Show another theme"
-    >
+    <button class="theme-cycle" type="button" aria-label="Show another theme">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path
           d="M17.65 6.35A7.95 7.95 0 0 0 12 4a8 8 0 1 0 7.75 10h-2.1A6 6 0 1 1 12 6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35Z"
@@ -123,15 +120,17 @@
       })
 
       const prefersReducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)",
+        "(prefers-reduced-motion: reduce)"
       )
 
       themeCycle.addEventListener("click", () => {
         if (!prefersReducedMotion.matches) {
-          themeCycle.querySelector("svg").animate(
-            [{ transform: "rotate(0deg)" }, { transform: "rotate(360deg)" }],
-            { duration: 500, easing: "ease" },
-          )
+          themeCycle
+            .querySelector("svg")
+            .animate(
+              [{ transform: "rotate(0deg)" }, { transform: "rotate(360deg)" }],
+              { duration: 500, easing: "ease" }
+            )
         }
         // Defer the theme swap so its (heavy) repaint doesn't eat the
         // first frames of the spin, which was dropping half the animation
