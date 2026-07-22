@@ -4,14 +4,14 @@
     <meta charset="utf-8" />
     <script>
       window.themes = [
-        "blush",
-        "cathedral",
-        "groove",
-        "picnic",
         "scape",
+        "cathedral",
+        "blush",
+        "groove",
         "waves",
+        "picnic",
       ]
-      document.documentElement.dataset.theme = "scape"
+      document.documentElement.dataset.theme = window.themes[0]
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -143,9 +143,9 @@
         // first frames of the flip
         requestAnimationFrame(() => {
           const current = document.documentElement.dataset.theme
-          const others = window.themes.filter((theme) => theme !== current)
-          document.documentElement.dataset.theme =
-            others[Math.floor(Math.random() * others.length)]
+          const currentIndex = window.themes.indexOf(current)
+          const nextIndex = (currentIndex + 1) % window.themes.length
+          document.documentElement.dataset.theme = window.themes[nextIndex]
         })
       })
     </script>
