@@ -38,22 +38,6 @@ body {
   outline-offset: 2px;
 }
 
-.theme-cycle.is-spinning svg {
-  animation: theme-cycle-spin 0.5s ease;
-}
-
-@keyframes theme-cycle-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .theme-cycle.is-spinning svg {
-    animation: none;
-  }
-}
-
 .container {
   display: grid;
   min-height: 100vh;

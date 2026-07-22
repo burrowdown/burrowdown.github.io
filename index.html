@@ -122,15 +122,26 @@
         flipTrigger.focus()
       })
 
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      )
+
       themeCycle.addEventListener("click", () => {
-        const current = document.documentElement.dataset.theme
-        const others = window.themes.filter((theme) => theme !== current)
-        document.documentElement.dataset.theme =
-          others[Math.floor(Math.random() * others.length)]
-        themeCycle.classList.remove("is-spinning")
-        // Restart the spin animation on each click.
-        void themeCycle.offsetWidth
-        themeCycle.classList.add("is-spinning")
+        if (!prefersReducedMotion.matches) {
+          themeCycle.querySelector("svg").animate(
+            [{ transform: "rotate(0deg)" }, { transform: "rotate(360deg)" }],
+            { duration: 500, easing: "ease" },
+          )
+        }
+        // Defer the theme swap so its (heavy) repaint doesn't eat the
+        // first frames of the spin, which was dropping half the animation
+        // on mobile.
+        requestAnimationFrame(() => {
+          const current = document.documentElement.dataset.theme
+          const others = window.themes.filter((theme) => theme !== current)
+          document.documentElement.dataset.theme =
+            others[Math.floor(Math.random() * others.length)]
+        })
       })
     </script>
   </body>
