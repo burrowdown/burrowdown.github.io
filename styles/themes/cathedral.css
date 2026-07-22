@@ -11,6 +11,7 @@
   --card-shadow: 0 12px 28px rgba(8, 76, 127, 0.35);
   --card-front-bg: radial-gradient(#fef5e9 0%, #fef5e9 25%, var(--c1) 400%);
   --card-back-bg: radial-gradient(#fef5e9 0%, #fef5e9 25%, var(--c1) 400%);
+  --theme-cycle-bg: #fef5e9;
 }
 
 [data-theme="cathedral"] .title {

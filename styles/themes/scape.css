@@ -11,6 +11,7 @@
   --card-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
   --card-front-bg: #dbe2f2b7;
   --card-back-bg: #dbe2f2b7;
+  --theme-cycle-bg: #dbe2f2;
   --scape-u: 5px;
   --scape-tile-x: calc(var(--scape-u) * 16.9);
   --scape-tile-y: calc(var(--scape-u) * 12.8);

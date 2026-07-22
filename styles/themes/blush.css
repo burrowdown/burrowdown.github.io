@@ -31,6 +31,7 @@
     var(--seashell) 88%,
     var(--powder-blush) 48%
   );
+  --theme-cycle-bg: var(--seashell);
 }
 
 [data-theme="blush"] .container::before,

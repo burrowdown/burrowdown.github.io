@@ -9,6 +9,51 @@ body {
   overflow: hidden;
 }
 
+.theme-cycle {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 1px solid var(--card-border, black);
+  border-radius: 0.65rem;
+  background: var(--theme-cycle-bg);
+  color: var(--theme-cycle-color, var(--text-color));
+  box-shadow: var(--card-shadow, 0 8px 14px 0 rgba(0, 0, 0, 0.2));
+  cursor: pointer;
+}
+
+.theme-cycle svg {
+  width: 1.15rem;
+  height: 1.15rem;
+  fill: currentColor;
+}
+
+.theme-cycle:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.theme-cycle.is-spinning svg {
+  animation: theme-cycle-spin 0.5s ease;
+}
+
+@keyframes theme-cycle-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-cycle.is-spinning svg {
+    animation: none;
+  }
+}
+
 .container {
   display: grid;
   min-height: 100vh;
