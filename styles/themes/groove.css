@@ -1,0 +1,36 @@
+/* Background from Uiverse.io by ariba_9087 */
+/* Color theme is "Dark Sunset" from Coolors.co */
+
+[data-theme="groove"] {
+  --font-family: "Plus Jakarta Sans", sans-serif;
+  --text-color: #540b0e;
+  --page-bg: #335c67;
+  --container-bg: transparent;
+  --card-border: #335c67;
+  --card-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+  --card-front-bg: #fff3b0;
+  --card-back-bg: #fff3b0;
+}
+
+[data-theme="groove"] .title {
+  font-family: "Caprasimo", cursive;
+  letter-spacing: 0.02em;
+}
+
+[data-theme="groove"] .container {
+  --s: 60px;
+  --c1: #e09f3e;
+  --c2: #9e2a2b;
+  --_g: radial-gradient(
+    25% 25% at 25% 25%,
+    var(--c1) 99%,
+    rgba(0, 0, 0, 0) 101%
+  );
+  background:
+    var(--_g) var(--s) var(--s) / calc(2 * var(--s)) calc(2 * var(--s)),
+    var(--_g) 0 0 / calc(2 * var(--s)) calc(2 * var(--s)),
+    radial-gradient(50% 50%, var(--c2) 98%, rgba(0, 0, 0, 0)) 0 0 / var(--s)
+      var(--s),
+    repeating-conic-gradient(var(--c2) 0 50%, var(--c1) 0 100%)
+      calc(0.5 * var(--s)) 0 / calc(2 * var(--s)) var(--s);
+}

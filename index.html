@@ -2,15 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <script>
+      const themes = ["blush", "groove", "cathedral", "scape"]
+      document.documentElement.dataset.theme =
+        themes[Math.floor(Math.random() * themes.length)]
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Caprasimo&amp;family=Fraunces:opsz,wght@9..144,400;9..144,700&amp;family=Goblin+One&amp;family=Michroma&amp;family=Outfit:wght@400;500;700&amp;family=Plus+Jakarta+Sans:wght@400;500;700&amp;family=Space+Grotesk:wght@400;500;700&amp;family=Syne:wght@400;500;700&amp;display=swap"
       rel="stylesheet"
     />
     <link rel="icon" href="/assets/favicon.ico" sizes="any" />
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles/base.css" />
+    <link rel="stylesheet" href="styles/themes/blush.css" />
+    <link rel="stylesheet" href="styles/themes/groove.css" />
+    <link rel="stylesheet" href="styles/themes/cathedral.css" />
+    <link rel="stylesheet" href="styles/themes/scape.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Danny Burrow</title>
   </head>
@@ -85,9 +94,7 @@
     </div>
     <script>
       const card = document.querySelector(".flip-card")
-      const flipTrigger = card.querySelector(
-        ".flip-card-front .flip-trigger",
-      )
+      const flipTrigger = card.querySelector(".flip-card-front .flip-trigger")
       const flipToFront = card.querySelector(".flip-to-front")
       const firstContactLink = card.querySelector(".contact-links a")
 

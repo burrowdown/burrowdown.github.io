@@ -1,0 +1,87 @@
+/* Background from Uiverse.io by  */
+/* Color theme is "Soft Peachy Delight" from Coolors.co */
+
+[data-theme="blush"] {
+  --powder-blush: #fec5bb;
+  --almond-silk: #fcd5ce;
+  --soft-blush: #fae1dd;
+  --seashell: #f8edeb;
+  --alabaster-grey: #e8e8e4;
+  --alabaster-grey-2: #d8e2dc;
+  --linen: #ece4db;
+  --powder-petal: #ffe5d9;
+  --peach-fuzz: #ffd7ba;
+  --peach-glow: #fec89a;
+
+  --font-family: "Space Grotesk", sans-serif;
+  --text-color: #422883;
+  --page-bg: linear-gradient(135deg, var(--powder-blush), var(--almond-silk));
+  --container-bg: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.2),
+    rgba(0, 0, 0, 0.1)
+  );
+  --card-front-bg: linear-gradient(
+    120deg,
+    var(--seashell) 88%,
+    var(--peach-glow) 48%
+  );
+  --card-back-bg: linear-gradient(
+    240deg,
+    var(--seashell) 88%,
+    var(--powder-blush) 48%
+  );
+}
+
+[data-theme="blush"] .container::before,
+[data-theme="blush"] .container::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    var(--powder-blush),
+    var(--almond-silk),
+    var(--seashell),
+    var(--alabaster-grey),
+    var(--peach-fuzz),
+    var(--soft-blush),
+    var(--linen),
+    var(--powder-petal),
+    var(--peach-glow),
+    var(--alabaster-grey-2),
+    var(--powder-blush)
+  );
+  transform: translate(-50%, -50%);
+  animation: blush-rotate 15s linear infinite;
+  filter: blur(50px);
+  opacity: 0.8;
+}
+
+[data-theme="blush"] .container::after {
+  width: 180%;
+  height: 180%;
+  animation: blush-rotate-reverse 10s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes blush-rotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes blush-rotate-reverse {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}

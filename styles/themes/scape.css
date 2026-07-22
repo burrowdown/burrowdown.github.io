@@ -1,0 +1,88 @@
+/* Background from Uiverse.io by mobinkakei */
+[data-theme="scape"] {
+  --c1: #8892a4;
+  --c2: #70798c;
+  --c3: #7c869c;
+  --font-family: "Space Grotesk", sans-serif;
+  --text-color: #3c424e;
+  --page-bg: #1e1e1e;
+  --container-bg: transparent;
+  --card-border: #3c424e;
+  --card-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+  --card-front-bg: #dbe2f2b7;
+  --card-back-bg: #dbe2f2b7;
+  --scape-u: 5px;
+  --scape-tile-x: calc(var(--scape-u) * 16.9);
+  --scape-tile-y: calc(var(--scape-u) * 12.8);
+}
+
+[data-theme="scape"] .title {
+  font-family: "Michroma", monospace;
+}
+
+[data-theme="scape"] .container::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  z-index: 0;
+  pointer-events: none;
+  --u: var(--scape-u);
+  --gp: 50% / var(--scape-tile-x) var(--scape-tile-y);
+  background:
+    conic-gradient(
+        from 122deg at 50% 85.15%,
+        var(--c2) 0 58deg,
+        var(--c3) 0 116deg,
+        #fff0 0 100%
+      )
+      var(--gp),
+    conic-gradient(from 122deg at 50% 72.5%, var(--c1) 0 116deg, #fff0 0 100%)
+      var(--gp),
+    conic-gradient(from 58deg at 82.85% 50%, var(--c3) 0 64deg, #fff0 0 100%)
+      var(--gp),
+    conic-gradient(
+        from 58deg at 66.87% 50%,
+        var(--c1) 0 64deg,
+        var(--c2) 0 130deg,
+        #fff0 0 100%
+      )
+      var(--gp),
+    conic-gradient(from 238deg at 17.15% 50%, var(--c2) 0 64deg, #fff0 0 100%)
+      var(--gp),
+    conic-gradient(
+        from 172deg at 33.13% 50%,
+        var(--c3) 0 66deg,
+        var(--c1) 0 130deg,
+        #fff0 0 100%
+      )
+      var(--gp),
+    linear-gradient(98deg, var(--c3) 0 15%, #fff0 calc(15% + 1px) 100%)
+      var(--gp),
+    linear-gradient(-98deg, var(--c2) 0 15%, #fff0 calc(15% + 1px) 100%)
+      var(--gp),
+    conic-gradient(
+        from -58deg at 50.25% 14.85%,
+        var(--c3) 0 58deg,
+        var(--c2) 0 116deg,
+        #fff0 0 100%
+      )
+      var(--gp),
+    conic-gradient(from -58deg at 50% 28.125%, var(--c1) 0 116deg, #fff0 0 100%)
+      var(--gp),
+    linear-gradient(90deg, var(--c2) 0 50%, var(--c3) 0 100%) var(--gp);
+  animation: scape-slide 16s linear infinite;
+}
+
+@keyframes scape-slide {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(
+      calc(var(--scape-tile-x) * -1),
+      calc(var(--scape-tile-y) * -1)
+    );
+  }
+}
