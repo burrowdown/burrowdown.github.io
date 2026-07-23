@@ -2,18 +2,18 @@
   --gingham-red: rgba(198, 40, 40, 0.55);
   --blanket-white: #fdf6f0;
 
-  --font-family: "Space Grotesk", sans-serif;
+  --font-family: "Outfit", sans-serif;
   --text-color: #5a3517;
   --page-bg: #fdf6f0;
   --container-bg: transparent;
   --card-border: transparent;
-  --card-shadow: 0 12px 22px rgba(74, 40, 12, 0.35);
+  --card-shadow: 6px 12px rgba(74, 40, 12, 0.35);
 
-  --weave-size: 26px;
+  --weave-size: 15px;
   --weave-rotate: 15deg;
-  --wicker-1: #d8a481; /* diagonal reeds */
-  --wicker-2: #efcb9c; /* crossing reeds */
-  --wicker-base: #ddb79c; /* gaps between reeds */
+  --wicker-1: #c9a876; /* diagonal reeds */
+  --wicker-2: #e8d4b8; /* crossing reeds */
+  --wicker-base: #d9c4a0; /* gaps between reeds */
   --wicker:
     linear-gradient(
         45deg,
@@ -43,13 +43,18 @@
   --card-front-bg: var(--wicker-base);
   --card-back-bg: var(--wicker-base);
   --theme-cycle-bg: var(--wicker-base);
-  --theme-cycle-color: #5a3517;
+}
+
+[data-theme="picnic"] .theme-cycle {
+  box-shadow: none;
+  border: 1px solid var(--text-color);
 }
 
 [data-theme="picnic"] .title {
   font-family: "Gochi Hand", cursive;
-  font-size: 1.9rem;
+  font-size: 2.1rem;
   letter-spacing: 0.12em;
+  line-height: 0.8;
 }
 
 [data-theme="picnic"] .roles,
@@ -57,11 +62,16 @@
   font-weight: 700;
 }
 
+[data-theme="picnic"] .contact-links svg {
+  filter: drop-shadow(0 0 8px #ffffff);
+}
+
 /* Paint the seamless 45deg weave on a clipped, rotated pseudo-element */
 [data-theme="picnic"] .flip-card-front,
 [data-theme="picnic"] .flip-card-back {
   overflow: hidden;
   isolation: isolate;
+  text-shadow: 0 0 2px #ffffff;
 }
 
 [data-theme="picnic"] .flip-card-front::before,
@@ -84,13 +94,13 @@
   background:
     repeating-linear-gradient(
       90deg,
-      transparent 0 20px,
-      var(--gingham-red) 20px 40px
+      transparent 0 30px,
+      var(--gingham-red) 30px 60px
     ),
     repeating-linear-gradient(
       0deg,
-      transparent 0 20px,
-      var(--gingham-red) 20px 40px
+      transparent 0 30px,
+      var(--gingham-red) 30px 60px
     ),
     var(--blanket-white);
 }

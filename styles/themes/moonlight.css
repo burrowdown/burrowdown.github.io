@@ -1,7 +1,7 @@
 /* Background from Uiverse.io by kiranmayee-abbireddy */
 
 [data-theme="moonlight"] {
-  --font-family: "Space Grotesk", sans-serif;
+  --font-family: "Outfit", sans-serif;
   --text-color: #e8e4d9;
   --page-bg: #050505;
   --container-bg: transparent;
@@ -21,7 +21,7 @@
 
 [data-theme="moonlight"] .flip-card-front,
 [data-theme="moonlight"] .flip-card-back {
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(1px);
 }
 
 /* Hidden unless moonlight is active so animations don't run for other themes */
@@ -145,6 +145,13 @@
   box-shadow: 15px 15px 0 0 #fdfbd3;
   filter: drop-shadow(0 0 15px rgba(253, 251, 211, 0.4));
   z-index: 10;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .uiverse-midnight-sky .moon {
+    top: auto;
+    bottom: 35%;
+  }
 }
 
 /* Twinkle Animation */
