@@ -1,31 +1,66 @@
-/* Background from Uiverse.io */
+/* Background from Uiverse.io by marcelodolza */
 [data-theme="waves"] {
   --c1: #d0f2f6;
   --c2: #bde9eb;
-  --wave-shade: #ffffff88; /* the diagonal shadow band; recolor/soften here */
+  --wave-shade: #ffffff88;
   --font-family: "Outfit", sans-serif;
-  --text-color: #306e71;
+  --text-color: #f9eadb;
   --page-bg: #306e71;
   --container-bg: transparent;
-  --card-border: #306e71;
+  --card-border: transparent;
   --card-shadow: 0 12px 28px rgba(53, 92, 125, 0.4);
 
-  /* Sand: a fractal-noise + diffuse-lighting SVG blended over the card color.
-     Tweak grain with baseFrequency, intensity with the rect opacity. */
-  --sand: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='190' height='254' preserveAspectRatio='none'><filter id='s'><feTurbulence type='fractalNoise' baseFrequency='0.080 0.200' numOctaves='4' seed='7' result='n'/><feDiffuseLighting in='n' lighting-color='%23fff' surfaceScale='1.1' diffuseConstant='1.05'><feDistantLight azimuth='235' elevation='55'/></feDiffuseLighting></filter><rect width='100%25' height='100%25' filter='url(%23s)' opacity='0.58'/></svg>");
-  --card-front-bg: var(--sand) center / cover no-repeat, #e8cba3;
-  --card-back-bg: var(--sand) center / cover no-repeat, #e8cba3;
-  --card-blend: overlay;
-  --theme-cycle-bg: var(--sand) center / cover no-repeat, #e8cba3;
+  /* Raft */
+  --raft-wood: #b8895a;
+  --raft-stripe: #6e4528;
+  --raft-grain: #936741;
+  --raft: repeating-linear-gradient(
+    90deg,
+    var(--raft-wood) 0 6px,
+    var(--raft-grain) 8px,
+    var(--raft-wood) 10px 14px,
+    var(--raft-stripe) 14px 16px,
+    var(--raft-wood) 16px 37px,
+    var(--raft-stripe) 39px,
+    var(--raft-wood) 41px 47px,
+    var(--raft-grain) 47px 48px,
+    var(--raft-wood) 48px 54px,
+    var(--raft-wood) 54px,
+    var(--raft-stripe) 55px,
+    var(--raft-stripe) 57px,
+    var(--raft-wood) 58px 72px,
+    var(--raft-stripe) 72px 73px,
+    var(--raft-wood) 73px 83px,
+    var(--raft-wood) 83px,
+    var(--raft-grain) 84px,
+    var(--raft-wood) 85px 94px,
+    var(--raft-stripe) 96px,
+    var(--raft-wood) 98px
+  );
+  --raft-wash: linear-gradient(
+    145deg,
+    rgba(255, 236, 210, 0.28) 0%,
+    transparent 42%,
+    transparent 58%,
+    rgba(55, 28, 12, 0.152) 100%
+  );
+  --card-front-bg: var(--raft-wash), var(--raft);
+  --card-back-bg: var(--raft-wash), var(--raft);
+  --theme-cycle-bg: var(--raft-wood);
 }
 
 [data-theme="waves"] .title {
-  font-family: "Original Surfer", sans-serif;
+  font-family: "Rubik Dirt", system-ui;
+  font-weight: 100;
+}
+
+[data-theme="waves"] .flip-card-front,
+[data-theme="waves"] .flip-card-back {
+  border-radius: 0;
 }
 
 [data-theme="waves"] .container {
-  --s: 100px; /* control the size */
-
+  --s: 120px; /* control the size */
   --_g:
     var(--c2) 4% 14%, var(--c1) 14% 24%, var(--c2) 22% 34%, var(--c1) 34% 44%,
     var(--c2) 44% 56%, var(--c1) 56% 66%, var(--c2) 66% 76%, var(--c1) 76% 86%,
@@ -33,7 +68,6 @@
   background: var(--c1);
 }
 
-/* Oversized so the tilt/sway never exposes an edge */
 [data-theme="waves"] .container::before {
   content: "";
   position: absolute;
