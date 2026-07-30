@@ -143,14 +143,23 @@ body {
   text-align: left;
   transition: transform 0.8s;
   transform-style: preserve-3d;
+  /* Keep the flip on the compositor; heavy theme paints fight it otherwise. */
+  will-change: transform;
 }
 
 .flip-card.is-flipped .flip-card-inner {
   transform: rotateY(180deg);
 }
 
-/* Only the visible face should receive clicks/taps. Without this the
-   rotated-away face keeps intercepting pointer events despite being hidden. */
+/* Pause full-bleed theme animations while the card is flipping so they
+   don't steal frames from the rotateY transition (esp. on mobile). */
+body:has(.flip-card.is-flipping) .container::before,
+body:has(.flip-card.is-flipping) .container::after,
+body:has(.flip-card.is-flipping) .uiverse-midnight-sky .stars,
+body:has(.flip-card.is-flipping) .uiverse-midnight-sky .meteor {
+  animation-play-state: paused;
+}
+
 .flip-card-back {
   pointer-events: none;
 }
@@ -161,20 +170,6 @@ body {
 
 .flip-card.is-flipped .flip-card-back {
   pointer-events: auto;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .flip-card:hover .flip-card-inner {
-    transform: rotateY(180deg);
-  }
-
-  .flip-card:hover .flip-card-front {
-    pointer-events: none;
-  }
-
-  .flip-card:hover .flip-card-back {
-    pointer-events: auto;
-  }
 }
 
 @media (hover: none), (pointer: coarse) {

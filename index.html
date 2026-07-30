@@ -127,45 +127,106 @@
     </div>
     <script>
       const card = document.querySelector(".flip-card")
+      const cardInner = card.querySelector(".flip-card-inner")
       const flipTrigger = card.querySelector(".flip-card-front .flip-trigger")
       const flipToFront = card.querySelector(".flip-to-front")
       const firstContactLink = card.querySelector(".contact-links a")
       const themeCycle = document.querySelector(".theme-cycle")
-
-      flipTrigger.addEventListener("click", () => {
-        card.classList.add("is-flipped")
-        flipTrigger.setAttribute("aria-expanded", "true")
-        firstContactLink.focus()
-      })
-
-      flipToFront.addEventListener("click", () => {
-        card.classList.remove("is-flipped")
-        flipTrigger.setAttribute("aria-expanded", "false")
-        flipTrigger.focus()
-      })
-
       const prefersReducedMotion = window.matchMedia(
         "(prefers-reduced-motion: reduce)"
       )
+      const finePointer = window.matchMedia(
+        "(hover: hover) and (pointer: fine)"
+      )
+
+      let flipTransitionHandler = null
+      let flipFinishTimer = null
+
+      const afterFlip = (onDone) => {
+        if (prefersReducedMotion.matches) {
+          card.classList.remove("is-flipping")
+          onDone()
+          return
+        }
+
+        card.classList.add("is-flipping")
+
+        if (flipTransitionHandler) {
+          cardInner.removeEventListener("transitionend", flipTransitionHandler)
+        }
+        if (flipFinishTimer) clearTimeout(flipFinishTimer)
+
+        let settled = false
+        const finish = () => {
+          if (settled) return
+          settled = true
+          card.classList.remove("is-flipping")
+          cardInner.removeEventListener("transitionend", flipTransitionHandler)
+          flipTransitionHandler = null
+          flipFinishTimer = null
+          onDone()
+        }
+        flipTransitionHandler = (event) => {
+          if (event.target === cardInner && event.propertyName === "transform") {
+            finish()
+          }
+        }
+        cardInner.addEventListener("transitionend", flipTransitionHandler)
+        // Fallback if transitionend is skipped under main-thread pressure.
+        flipFinishTimer = setTimeout(finish, 900)
+      }
+
+      // Force both faces to paint now so the first real flip doesn't pay
+      // that rasterization cost mid-transition.
+      const warmCardFaces = () => {
+        const wasFlipped = card.classList.contains("is-flipped")
+        const previousTransition = cardInner.style.transition
+        cardInner.style.transition = "none"
+        card.classList.add("is-flipped")
+        void card.offsetHeight
+        if (!wasFlipped) card.classList.remove("is-flipped")
+        void card.offsetHeight
+        cardInner.style.transition = previousTransition
+      }
+
+      const showBack = () => {
+        if (card.classList.contains("is-flipped")) return
+        card.classList.add("is-flipped")
+        flipTrigger.setAttribute("aria-expanded", "true")
+        afterFlip(() => {
+          if (!finePointer.matches) firstContactLink.focus()
+        })
+      }
+
+      const showFront = () => {
+        if (!card.classList.contains("is-flipped")) return
+        card.classList.remove("is-flipped")
+        flipTrigger.setAttribute("aria-expanded", "false")
+        afterFlip(() => {
+          if (!finePointer.matches) flipTrigger.focus()
+        })
+      }
+
+      // One flip path for hover + tap so both get is-flipping (pauses
+      // theme animations) during the transition.
+      if (finePointer.matches) {
+        card.addEventListener("mouseenter", showBack)
+        card.addEventListener("mouseleave", showFront)
+      } else {
+        flipTrigger.addEventListener("click", showBack)
+        flipToFront.addEventListener("click", showFront)
+      }
 
       themeCycle.addEventListener("click", () => {
-        if (!prefersReducedMotion.matches) {
-          themeCycle
-            .querySelector("svg")
-            .animate(
-              [{ transform: "rotate(0deg)" }, { transform: "rotate(360deg)" }],
-              { duration: 500, easing: "ease" }
-            )
-        }
-        // Defer the theme swap so its (heavy) repaint doesn't eat the
-        // first frames of the flip
-        requestAnimationFrame(() => {
-          const current = document.documentElement.dataset.theme
-          const currentIndex = window.themes.indexOf(current)
-          const nextIndex = (currentIndex + 1) % window.themes.length
-          document.documentElement.dataset.theme = window.themes[nextIndex]
-        })
+        const current = document.documentElement.dataset.theme
+        const currentIndex = window.themes.indexOf(current)
+        const nextIndex = (currentIndex + 1) % window.themes.length
+        document.documentElement.dataset.theme = window.themes[nextIndex]
+        // Paint the new theme's back face before the user flips.
+        requestAnimationFrame(warmCardFaces)
       })
+
+      warmCardFaces()
     </script>
   </body>
 </html>

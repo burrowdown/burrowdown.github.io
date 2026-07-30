@@ -1,13 +1,12 @@
 [data-theme="beach"] {
   --blanket-white: #fdf6f0;
-  --blanket-rotate: 45deg;
   --fringe-bg: #fca5a5;
 
   /* Sand: fractal-noise + diffuse-lighting SVG */
   --sand: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='190' height='254' preserveAspectRatio='none'><filter id='s'><feTurbulence type='fractalNoise' baseFrequency='0.080 0.200' numOctaves='4' seed='7' result='n'/><feDiffuseLighting in='n' lighting-color='%23fff' surfaceScale='1.1' diffuseConstant='1.05'><feDistantLight azimuth='235' elevation='55'/></feDiffuseLighting></filter><rect width='100%25' height='100%25' filter='url(%23s)' opacity='0.58'/></svg>");
 
   --blanket: repeating-linear-gradient(
-    to bottom,
+    45deg,
     #ff6b6b 0px,
     #ff6b6b 15px,
     #fed7aa 15px,
@@ -16,6 +15,11 @@
     #60a5fa 45px,
     #fca5a5 45px,
     #fca5a5 60px
+  );
+  --fringe: repeating-linear-gradient(
+    90deg,
+    #ffffff 0 3px,
+    var(--fringe-bg) 2px 6px
   );
 
   --font-family: "Outfit", sans-serif;
@@ -51,49 +55,16 @@
   font-weight: 700;
 }
 
-/* Paint the blanket on a clipped, rotated pseudo-element */
 [data-theme="beach"] .flip-card-front,
 [data-theme="beach"] .flip-card-back {
-  overflow: hidden;
-  isolation: isolate;
   border: none;
   border-radius: 0;
   text-shadow:
     0 0 2px #000000,
     0 0 1px #000000;
-}
-
-[data-theme="beach"] .flip-card-front::before,
-[data-theme="beach"] .flip-card-back::before {
-  content: "";
-  position: absolute;
-  inset: -35%;
-  z-index: -1;
-  background: var(--blanket), var(--blanket-white);
-  transform: rotate(var(--blanket-rotate));
-  filter: blur(0.5px);
-}
-
-/* Fringe along the top and bottom edges */
-[data-theme="beach"] .flip-card-front::after,
-[data-theme="beach"] .flip-card-back::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image:
-    repeating-linear-gradient(90deg, #ffffff 0 3px, var(--fringe-bg) 2px 6px),
-    repeating-linear-gradient(90deg, #ffffff 0 3px, var(--fringe-bg) 2px 6px);
-  background-size: 100% 15px;
-  background-position: top, bottom;
-  background-repeat: repeat-x;
-  filter: blur(0.5px);
-}
-
-[data-theme="beach"] .title,
-[data-theme="beach"] .roles,
-[data-theme="beach"] .contact-links {
-  position: relative;
-  z-index: 1;
+  background:
+    var(--fringe) top / 100% 15px repeat-x,
+    var(--fringe) bottom / 100% 15px repeat-x,
+    var(--blanket),
+    var(--blanket-white);
 }

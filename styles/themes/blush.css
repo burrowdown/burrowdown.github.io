@@ -86,3 +86,13 @@
     transform: translate(-50%, -50%) rotate(-360deg);
   }
 }
+
+@media (hover: none), (pointer: coarse) {
+  [data-theme="blush"] .container::before {
+    animation-duration: 10s;
+  }
+
+  [data-theme="blush"] .container::after {
+    animation-duration: 7s;
+  }
+}

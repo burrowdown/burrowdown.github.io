@@ -8,7 +8,8 @@
   --page-bg: #306e71;
   --container-bg: transparent;
   --card-border: transparent;
-  --card-shadow: 0 12px 28px rgba(53, 92, 125, 0.4);
+  --card-shadow:
+    6px 9px 18px #356c7d66, 12px 18px 38px #356c7d33, 18px 24px 58px #356c7d1a;
 
   /* Raft */
   --raft-wood: #b8895a;
@@ -59,6 +60,10 @@
   border-radius: 0;
 }
 
+[data-theme="waves"] .theme-cycle {
+  box-shadow: none;
+}
+
 [data-theme="waves"] .container {
   --s: 120px; /* control the size */
   --_g:
@@ -100,5 +105,11 @@
   }
   to {
     transform: rotate(0.2deg) translateX(0.3%);
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  [data-theme="waves"] .container::before {
+    animation-duration: 2s;
   }
 }
