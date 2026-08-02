@@ -217,13 +217,17 @@ body:has(.flip-card.is-flipping) .uiverse-midnight-sky .meteor {
   background-blend-mode: var(--card-blend, normal);
 }
 
+/* translateZ(0) keeps each face in the parent's 3D context while promoting
+   it to its own compositor layer, so both faces stay pre-rasterized and the
+   back face never paints for the first time mid-flip. */
 .flip-card-front {
   background: var(--card-front-bg);
+  transform: translateZ(0);
 }
 
 .flip-card-back {
   background: var(--card-back-bg);
-  transform: rotateY(180deg);
+  transform: rotateY(180deg) translateZ(0);
 }
 
 @media (prefers-reduced-motion: reduce) {

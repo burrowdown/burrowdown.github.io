@@ -17,10 +17,20 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Load fonts without blocking first paint; display=swap renders text
+         immediately in a fallback and swaps when the real face arrives. -->
     <link
       href="https://fonts.googleapis.com/css2?family=Caprasimo&amp;family=Fraunces:opsz,wght@9..144,400;9..144,700&amp;family=Gochi+Hand&amp;family=Goblin+One&amp;family=Michroma&amp;family=Original+Surfer&amp;family=Outfit:wght@400;500;700&amp;family=Plus+Jakarta+Sans:wght@400;500;700&amp;family=Rubik+Dirt&amp;family=Space+Grotesk:wght@400;500;700&amp;display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Caprasimo&amp;family=Fraunces:opsz,wght@9..144,400;9..144,700&amp;family=Gochi+Hand&amp;family=Goblin+One&amp;family=Michroma&amp;family=Original+Surfer&amp;family=Outfit:wght@400;500;700&amp;family=Plus+Jakarta+Sans:wght@400;500;700&amp;family=Rubik+Dirt&amp;family=Space+Grotesk:wght@400;500;700&amp;display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
     <link rel="icon" href="/assets/favicon.ico" sizes="any" />
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles/base.css" />
@@ -227,6 +237,35 @@
       })
 
       warmCardFaces()
+
+      // Only the starting theme's fonts download on load; cycling to another
+      // theme would otherwise fetch its title font on the spot and flash from
+      // the fallback. Warm every family during idle so switches are instant.
+      const warmThemeFonts = () => {
+        if (!document.fonts || !document.fonts.load) return
+        const families = [
+          "Caprasimo",
+          "Fraunces",
+          "Gochi Hand",
+          "Goblin One",
+          "Michroma",
+          "Original Surfer",
+          "Outfit",
+          "Plus Jakarta Sans",
+          "Rubik Dirt",
+          "Space Grotesk",
+        ]
+        families.forEach((family) => {
+          document.fonts.load(`1em "${family}"`).catch(() => {})
+          document.fonts.load(`700 1em "${family}"`).catch(() => {})
+        })
+      }
+
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(warmThemeFonts, { timeout: 2000 })
+      } else {
+        setTimeout(warmThemeFonts, 800)
+      }
     </script>
   </body>
 </html>
